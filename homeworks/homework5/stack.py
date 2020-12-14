@@ -10,8 +10,8 @@ class Stack(object):
 			self.stack.pop();
 	
 	def is_empty(self):
-		return (len(self.stack) == 0);
-
+		#return (len(self.stack) == 0);
+		return not self.stack;
 	def show(self):
 		print(self.stack);
 
