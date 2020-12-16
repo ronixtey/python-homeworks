@@ -19,7 +19,8 @@ class Round(Figure):
 		print("Круг нарисован");
 
 	def __square(self, a):
-		return math.pi * (a ** 2);
+		#return math.pi * (a ** 2);
+		return math.pi * Square.square(a);
 
 
 square = Square();
