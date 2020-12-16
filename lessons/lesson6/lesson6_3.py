@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod;
 
-class ChessPiece(ABC):	# объявление абстрактного метода
+class ChessPiece(ABC):	# объявление абстрактного класса
 	def draw(self):
 		print("Drew a chess piece");
 

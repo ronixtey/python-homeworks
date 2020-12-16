@@ -6,8 +6,8 @@ class Basic(ABC):
 		print("Hello from Basic class");
 
 class Advanced(Basic):
-	def hello(self):
-		super().hello();	#обращаемся к родительскому методу
+	def hello(self): # дополняем метод
+		super().hello();	# выполняем родительский код, обратившись к родительскому методу
 		print("hello");
 
 class Second(Advanced):
