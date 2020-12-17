@@ -1,4 +1,5 @@
-file = open("text.txt");	# w - write, x - create and write, a - add, + - read and write
+# r - read(default), a - append, w - write, x - create, + - read and write
+file = open("text2.txt");	
 
 
 # print(file.read(4));
