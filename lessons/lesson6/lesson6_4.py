@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod;
 
 class Basic(ABC):
-	@abstractmethod
+	@abstractmethod # надо обязательно дополнить или переопределить
 	def hello(self):
 		print("Hello from Basic class");
 
