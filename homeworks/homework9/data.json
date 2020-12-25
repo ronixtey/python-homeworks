@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "username": "admin",
+        "email": "admin@example.com",
+        "registerd_at": "25-12-2020 17:52:43"
+    },
+    {
+        "id": 2,
+        "username": "first_user",
+        "email": "first_user@example.com",
+        "registerd_at": "25-12-2020 17:52:43"
+    },
+    {
+        "id": 3,
+        "username": "second_user",
+        "email": "second_user@example.com",
+        "registerd_at": "25-12-2020 17:52:43"
+    }
+]
