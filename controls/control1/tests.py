@@ -1,5 +1,5 @@
 import unittest
-from control1_2 import Hero, Dragon
+from control1_2_x import Hero, Dragon
 
 class TestCont(unittest.TestCase):
     def test_init_hero(self):

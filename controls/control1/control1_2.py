@@ -1,4 +1,4 @@
-import control1;
+from control1 import Hero, Dragon;
 from random import randint;
 
 def attack(issuer, damaged):
@@ -22,8 +22,8 @@ def show_stats():
 	print(f"{hero.name} perk damage:", sum(hero.perk_damages));
 
 
-hero = control1.Hero("Kolyan", 8, 18, 12, 14, 8, 10);
-dragon = control1.Dragon("Dragon", 10, 20, 10, 16, 8, 20);
+hero = Hero("Kolyan", 8, 18, 12, 14, 8, 10);
+dragon = Dragon("Dragon", 10, 20, 10, 16, 8, 20);
 
 while dragon.hp > 0:
 	if(hero.hp >= 11): attack(hero, dragon);
