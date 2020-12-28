@@ -8,7 +8,7 @@ def attack(issuer, damaged):
 	else:
 		damage = issuer.attack();
 	
-	damaged.hp = damaged.hp - damage;
+	damaged.hp -= damage;
 	if(damaged.hp <= 0): damaged.death();
 
 def show_stats():

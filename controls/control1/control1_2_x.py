@@ -46,7 +46,7 @@ class Battle:
 			print(f"{issuer.name} attacks..");
 			damage = issuer.attack();
 		
-		damaged.hp = damaged.hp - damage;
+		damaged.hp -= damage;
 		if(damaged.hp <= 0): 
 			return print(damaged.death());
 		else:
