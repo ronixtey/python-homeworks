@@ -70,8 +70,8 @@ class Battle:
 		print("---------------------------------------------------------");
 		print(f"{dragon.name} attack damages:", dragon.attack_damages);
 		print(f"{dragon.name} perk damages:", dragon.perk_damages);
-		print(f"{hero.name} attack damages: {hero.attack_damages}");
-		print(f"{hero.name} perk damages: {hero.perk_damages}");
+		print(f"{hero.name} attack damages:", hero.attack_damages);
+		print(f"{hero.name} perk damages:", hero.perk_damages);
 
 # create players
 hero = Hero("Kolyan", 8, 18, 12, 14, 8, 10);
