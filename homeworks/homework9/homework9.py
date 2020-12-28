@@ -1,45 +1,34 @@
 import json;
 import datetime;
 
-# 	"dog": {
-
 json_file = "data.json";
-# data = [
-# 	{"username": "admin", "email": "admin@example.com"},
-# 	{"username": "first_user", "email": "first_user@example.com"},
-# 	{"username": "second_user", "email": "second_user@example.com"},
-# ];
 data = [
 	{
-		"id": 1, 
+		"id": None, 
 		"username": "admin",
 		"email": "admin@example.com",
-		"registered_at": datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+		"registered_at": None
 	},
 	{
-		"id": 2, 
+		"id": None, 
 		"username": "first_user",
 		"email": "first_user@example.com",
-		"registered_at": datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+		"registered_at": None
 	},
 	{
-		"id": 3, 
+		"id": None, 
 		"username": "second_user",
 		"email": "second_user@example.com",
-		"registered_at": datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+		"registered_at": None
 	}
 ];
 
 
-with open(json_file, "a") as file:
+with open(json_file, "w") as file:
 	for i in data:
-		data[i]["id"] = 0;
-		print(i);
-	# json.dump(data, file, indent=4);
-
-
-# with open(json_file, "w") as file:
-# 	json.dump(data, file, indent=4);
+		i["id"] = data.index(i) + 1;
+		i["registered_at"] = datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S");
+	json.dump(data, file, indent=4);
 
 with open(json_file) as file:
 	print(json.load(file));
