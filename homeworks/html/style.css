@@ -1,0 +1,24 @@
+.card {
+	width: 500px;
+	height: 500px;
+	border: 2px solid black;
+	border-radius: 20px;
+	padding: 10px;
+	display: inline-block;
+	margin: 10px;
+	font-family: Verdana;
+}
+
+.card > h2, a {
+	text-align: center;
+	display: block;
+}
+
+.card > img {
+	widows: 200px;
+	height: 200px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+
