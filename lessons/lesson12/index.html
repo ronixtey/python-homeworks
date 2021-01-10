@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Player</title>
+
+	<style type="text/css">
+		.button {
+			width: 500px;
+			height: 50px;
+			border: 2px solid black;
+			border-radius: 20px;
+			background-color: gainsboro;
+			margin-bottom: 10px;
+			line-height: 50px;
+			padding-left: 10px;
+		}
+
+		.button:hover {
+			background-color: #404347; 
+			color: white;
+		}
+		.button:active {
+			background-color: black;
+		}
+
+		.content {
+			float: left;
+			height: 96px;
+			margin-right: 10px;
+			width: 600px;	
+			overflow-y: scroll;
+		}
+
+
+	</style>
+</head>
+<body>
+	<div class="content songs">
+		<div class="button" onclick="tap(this.id)" data-song="audio/eminem - lose yourself.mp3" id="1">Eminem - Lose Yourself</div>
+		<div class="button" onclick="tap(this.id)" data-song="audio/eminem - not afraid.mp3" id="2">Eminem - Not Afriad</div>
+		<div class="button" onclick="tap(this.id)" data-song="audio/eminem - without me.mp3" id="3">Eminem - Without Me</div>
+	</div>
+	
+	<div class="content player">
+		<audio src="" controls id="audio"></audio>
+	</div>
+</body>
+
+	<script type="text/javascript">
+		function tap(id) {
+			var audio = document.getElementById("audio");
+			audio.src = document.getElementById(id).dataset["song"];	
+			audio.play();				
+		}
+
+	</script>
+
+</html>
