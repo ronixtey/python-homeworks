@@ -49,10 +49,13 @@
 
 	<script type="text/javascript">
 		function tap(id) {
-			var audio = document.getElementById("audio");
+			audio.src = document.getElementById(id).dataset["song"];
+			audio.play();
+	
+	/*		var audio = document.getElementById("audio");
 			audio.src = document.getElementById(id).dataset["song"];	
 			audio.play();				
-		}
+	*/	}
 
 	</script>
 
