@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ post }}</title>
+
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 	'materialize.min.css' %}">
+	
+</head>
+<body>
+	<div class="container">
+		<h1>{{ post }}</h1>
+		<p>{{ post.body }}</p>
+		<br><br><br>
+
+		<div id="comments">
+			<ol>
+				{% for comment in post.comment_set.all %}
+					<li><a href="">{{ comment }}</a></li>
+				{% endfor %}
+			</ol>
+		</div>
+
+		<br><br><br>
+		<div class="row">
+			<form class="col s6">
+				<div class="input_field">
+					<textarea id="comment" class="materialize-textarea">
+					</textarea>
+					<label for="comment">Leave a comment...</label>
+				</div>
+				<div class="input_field">
+					<input type="text" name="user">
+					<label for="user">Your username: </label>
+				</div>
+				<br><br>
+				<input type="submit" name="" class="btn-small" value="Comment" >
+			</form>
+		</div>
+	</div>
+</body>
+</html>
+
