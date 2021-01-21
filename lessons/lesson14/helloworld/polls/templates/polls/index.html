@@ -1,9 +1,12 @@
-{% if latest_question_list %}
-	<ul>
-	{% for question in latest_question_list%}
-		<li><a href="/polls/{{ question.id }}">{{ question.body }}</a></li>	
-	{% endfor %}
-	</ul>
-{% else %}
-	<p>No polls are available</p>
-{% endif %}
+{% extends "polls/navbar.html" %}
+
+{% block content %}
+		<div class="list-group">
+	{% if latest_question_list %}
+		{% for question in latest_question_list%}
+			<a href="/polls/{{ question.id }}" class="list-group-item list-group-item-action list-group-item-primary">{{ question.body }}</a>
+		{% endfor %}
+		</div>
+	{% else %}
+		<p>No polls are available</p>
+	{% endif %} 

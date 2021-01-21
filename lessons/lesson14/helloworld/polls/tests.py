@@ -42,6 +42,33 @@ class QuestionIndexViewTests(TestCase):
 		self.assertQuerysetEqual(response.context["latest_question_list"], ['<Question: Past 1>', '<Question: Past 2>'])
 
 
+class QuestionDetailViewTests(TestCase):
+	def test_future_question(self):
+		future_question = create_question(question_text="Future", days=5)
+		url = reverse("polls:detail", args=(future_question.id,))
+		response = self.client.get(url)
+		self.assertEquals(response.status_code, 404)
+
+	def test_past_question(self):
+		past_question = create_question(question_text="Past", days=-5)
+		url = reverse("polls:detail", args=(past_question.id,))
+		response = self.client.get(url)
+		self.assertContains(response, past_question.body)
+
+class QuestionResultsViewTests(TestCase):
+	def test_future_question(self):
+		future_question = create_question(question_text="Future", days=5)
+		url = reverse("polls:results", args=(future_question.id,))
+		response = self.client.get(url)
+		self.assertEquals(response.status_code, 404)
+
+	def test_past_question(self):
+		past_question = create_question(question_text="Past", days=-5)
+		url = reverse("polls:results", args=(past_question.id,))
+		response = self.client.get(url)
+		self.assertContains(response, past_question.body)
+		
+
 class QuestionModelTests(TestCase):
  	def test_was_published_recently_with_future_question(self):
  		time = timezone.now() + datetime.timedelta(days=30)
