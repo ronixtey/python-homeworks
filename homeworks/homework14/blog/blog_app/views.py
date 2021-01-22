@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
+from django.utils import timezone
 
 from .models import Post, Comment
 
@@ -20,11 +21,14 @@ class IndexView(generic.ListView):
 	context_object_name = "posts"
 
 	def get_queryset(self):
-		return Post.objects.order_by("-pub_date")
+		return Post.objects.filter(pub_date__lte=timezone.now()).order_by("-pub_date")
 
 class DetailView(generic.DetailView):
 	model = Post
 	template_name = "blog_app/detail.html"
+
+	def get_queryset(self):
+		return Post.objects.filter(pub_date__lte=timezone.now())
 
 def create_comment(request, post_id):
 	return HttpResponseRedirect(reverse('blog_app:index'))

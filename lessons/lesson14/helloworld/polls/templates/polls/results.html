@@ -1,7 +1,7 @@
 {% extends "polls/navbar.html" %}
 
 {% block content %}
-	<h1>{{ question }}</h1>
+	<h1 class="question">{{ question }}</h1>
 
 	<ul class="list-group">
 	{% for choice in question.choice_set.all %}
