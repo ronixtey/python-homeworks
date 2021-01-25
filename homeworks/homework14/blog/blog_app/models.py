@@ -15,6 +15,8 @@ class Comment(models.Model):
 	post = models.ForeignKey(Post, on_delete=models.CASCADE)
 	body = models.CharField(max_length=144)
 	pub_date = models.DateTimeField(default=timezone.now())
+	user = models.CharField(max_length=32, null=True, blank=True)
+
 
 	def __str__(self):
 		return self.body

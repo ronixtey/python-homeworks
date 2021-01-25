@@ -24,7 +24,10 @@
 		<br><br><br>
 		<div class="row">
 			<form class="col s6">
-				<div class="input_field">
+				{% csrf_token %}
+				{{ form.as_p}}
+
+				<!-- <div class="input_field">
 					<textarea id="comment" class="materialize-textarea">
 					</textarea>
 					<label for="comment">Leave a comment...</label>
@@ -33,7 +36,7 @@
 					<input type="text" name="user">
 					<label for="user">Your username: </label>
 				</div>
-				<br><br>
+				<br><br> -->
 				<input type="submit" name="" class="btn-small" value="Comment" >
 			</form>
 		</div>

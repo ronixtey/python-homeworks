@@ -5,6 +5,7 @@ from django.views import generic
 from django.utils import timezone
 
 from .models import Post, Comment
+from .forms import CommentForm
 
 # Create your views here.
 # def index(request):
@@ -23,6 +24,7 @@ class IndexView(generic.ListView):
 	def get_queryset(self):
 		return Post.objects.filter(pub_date__lte=timezone.now()).order_by("-pub_date")
 
+
 class DetailView(generic.DetailView):
 	model = Post
 	template_name = "blog_app/detail.html"
@@ -30,5 +32,19 @@ class DetailView(generic.DetailView):
 	def get_queryset(self):
 		return Post.objects.filter(pub_date__lte=timezone.now())
 
-def create_comment(request, post_id):
-	return HttpResponseRedirect(reverse('blog_app:index'))
+	def get_context_data(self, **kwargs):
+		context = super().get_context_data(**kwargs)
+		context["form"] = CommentForm()
+		return context
+
+def create_comment(request, post_id):	
+	if(request.method == "POST"):
+		form = CommentForm(request.POST)
+		if(form.is_valid()):
+			#post = get_object_or_404(Post, pk=post_id)
+			form.post = post_id 
+			return HttpResponseRedirect(reverse('blog_app:index'))
+		else: 
+			form = CommentForm()
+
+		return render(request, "blog_app/detail.html", {"form": form})
