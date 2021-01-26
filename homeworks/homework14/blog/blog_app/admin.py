@@ -4,7 +4,7 @@ from .models import Post, Comment
 # Register your models here.
 
 class PostAdmin(admin.ModelAdmin):
-	list_display = ["body", "user", "pub_date"]
+	list_display = ["title", "user", "pub_date"]
 	list_filter = ["pub_date", "user"]
 	search_fields = ["body", "title"]
 
