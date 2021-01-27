@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>{{ post }}</title>
+{% extends "blog_app/navbar.html" %}
 
-	{% load static %}
-	<link rel="stylesheet" type="text/css" href="{% static 	'materialize.min.css' %}">
-	
-</head>
-<body>
+{% block content %}
 	<div class="container">
 		<h1>{{ post }}</h1>
 		<p>{{ post.body }}</p>
@@ -41,6 +34,4 @@
 			</form>
 		</div>
 	</div>
-</body>
-</html>
-
+{% endblock %}

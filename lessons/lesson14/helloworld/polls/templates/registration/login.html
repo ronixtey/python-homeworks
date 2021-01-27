@@ -1,0 +1,24 @@
+{% extends "polls/navbar.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="card text-center">
+  <div class="card-header">
+    Login
+  </div>
+  <div class="card-body">
+  	<form action="" method="post">
+  		{% csrf_token %}
+  		<input type="hidden" name="next" value="{{ next }}">
+
+
+  		{{ form|crispy }}
+  		<button type="submit" class="btn btn-primary">Log in</button> 
+  	</form>
+  </div>
+  <div class="card-footer text-muted">
+    Please, log in to your account
+  </div>
+</div>
+
+{% endblock %}

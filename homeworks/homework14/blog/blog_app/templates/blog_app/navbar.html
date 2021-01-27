@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Blog</title>
+
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 	'materialize.min.css' %}">
+
+</head>
+<body>
+	<div class="navbar-fixed">
+		<nav>
+		  <div class="nav-wrapper black">
+		    <a href="#!" class="brand-logo">Blog</a>
+		    
+		  {% if user.is_authenticated %}
+	    	<ul class="right hide-on-med-and-down">
+		      <li><a href="{% url 'blog_app:logout' %}">Log out</a></li>
+		    </ul>	
+	    {% else %}
+	    	<ul class="right hide-on-med-and-down">
+		      <li><a href="{% url 'blog_app:login' %}">Sign in</a></li>
+		      <li><a href="{% url 'blog_app:register' %}">Sign up</a></li>
+		    </ul>
+		 	{% endif %}	
+		  </div>
+		</nav>
+	</div>
+
+	<div class="container">
+	{% block content %}
+	{% endblock %}
+	</div>
+</body>
+</html>

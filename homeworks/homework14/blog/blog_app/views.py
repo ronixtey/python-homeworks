@@ -5,7 +5,7 @@ from django.views import generic
 from django.utils import timezone
 
 from .models import Post, Comment
-from .forms import CommentForm
+from .forms import RegistrationForm, CommentForm
 
 # Create your views here.
 # def index(request):
@@ -36,6 +36,19 @@ class DetailView(generic.DetailView):
 		context = super().get_context_data(**kwargs)
 		context["form"] = CommentForm()
 		return context
+
+class RegisterView(generic.edit.FormView):
+	form_class = RegistrationForm
+	success_url = "/login"
+	template_name = "registration/register.html"
+
+	def form_valid(self, form):
+		form.save()
+		return super(RegisterView, self).form_valid(form)
+
+	def form_invalid(self, form):
+		return super(RegisterView, self).form_invalid(form)
+
 
 def create_comment(request, post_id):	
 	if(request.method == "POST"):

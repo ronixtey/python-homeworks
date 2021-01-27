@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+from .forms import RegistrationForm
 
 from .models import Question, Choice
 
@@ -51,6 +52,19 @@ class ResultsView(generic.DetailView):
 	def get_queryset(self):
 		return Question.objects.filter(pub_date__lte=timezone.now())	
 	
+class RegisterView(generic.edit.FormView):
+	form_class = RegistrationForm
+	sucess_url = "/polls/login"
+	template_name = "registration/register.html"
+
+	def form_valid(self, form):
+		form.save()
+		return super(RegisterView, self).form_valid(form)
+
+	def form_invalid(self, form):
+		return super(RegisterView, self).form_invalid(form)
+
+
 
 def vote(request, question_id):
 	question = get_object_or_404(Question, pk=question_id)

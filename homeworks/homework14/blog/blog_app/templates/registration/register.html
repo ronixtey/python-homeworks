@@ -1,0 +1,14 @@
+{% extends "blog_app/navbar.html" %}
+
+{% block content %}
+<div class="row">
+	<div class="col s6 offset-m3">
+		<h5 class="center-align">Sign up to Blog</h5>
+		<form action="" method="post">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<input type="submit" class="btn-small waves-effect" value="Sign up">
+		</form>
+	</div>
+</div>
+{% endblock %}
