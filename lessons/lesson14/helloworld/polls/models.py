@@ -1,6 +1,7 @@
 import datetime
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Question(models.Model):
@@ -26,6 +27,22 @@ class Choice(models.Model):
 	def __str__(self):
 		return self.body
 
+class UserChoice(models.Model):
+	question = models.ForeignKey(Question, on_delete=models.CASCADE)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	voting_date = models.DateTimeField(default=timezone.now())
+
+	def __str__(self):
+		return f"{self.question} => {self.user}"
 
 
-# после каждого изменения запускать - manage.py makemigrations polls
+
+
+
+
+
+
+
+# после каждого изменения (кроме методов) запускать: 
+# 1) manage.py makemigrations polls
+# 2) manage.py migrate

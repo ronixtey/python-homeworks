@@ -5,7 +5,7 @@ from django.views import generic
 from django.utils import timezone
 from .forms import RegistrationForm
 
-from .models import Question, Choice
+from .models import Question, Choice, UserChoice
 
 
 # Create your views here.
@@ -65,16 +65,23 @@ class RegisterView(generic.edit.FormView):
 		return super(RegisterView, self).form_invalid(form)
 
 
-
 def vote(request, question_id):
-	question = get_object_or_404(Question, pk=question_id)
-	try:
-		selected_choice = question.choice_set.get(pk=request.POST['choice'])
-	except (KeyError, Choice.DoesNotExist):
-		context = {"question": question, "error_message": "You didn't select choice"}
-		return render(request, 'polls/detail.html', context)
+	if request.user.is_authenticated:
+		question = get_object_or_404(Question, pk=question_id)
+		try:
+			selected_choice = question.choice_set.get(pk=request.POST['choice'])
+		except (KeyError, Choice.DoesNotExist):
+			context = {"question": question, "error_message": "You didn't select choice"}
+			return render(request, 'polls/detail.html', context)
+		else:
+			founded_user_choice = UserChoice.objects.filter(user=request.user, question=question)
+			if not founded_user_choice:
+				selected_choice.votes += 1
+				selected_choice.save()
+
+				user_choice = UserChoice(question=question, user=request.user)
+				user_choice.save()
+				return HttpResponseRedirect(reverse('polls:results', args=(question_id,)))
+			return HttpResponseRedirect(reverse('polls:detail', args=(question.id,)))
 	else:
-		selected_choice.votes += 1
-		selected_choice.save()
-		return HttpResponseRedirect(reverse('polls:results', args=(question_id,)))
-		
+		return HttpResponseRedirect(reverse('polls:login'))
