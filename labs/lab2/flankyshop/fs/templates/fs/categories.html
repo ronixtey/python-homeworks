@@ -1,0 +1,9 @@
+{% extends "fs/base.html" %}
+
+{% block content %}
+<ul>
+	{% for c in categories %}
+		<li><a href="{% url 'fs:subcategories' c.id %}">{{ c }}</a></li>
+	{% endfor %}		
+</ul>
+{% endblock %}

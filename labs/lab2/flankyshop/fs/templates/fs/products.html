@@ -1,0 +1,9 @@
+{% extends "fs/base.html" %}
+
+{% block content %}
+	<ul>
+		{% for p in products %}
+		<li><a href="#">{{ p }}</a></li>
+		{% endfor %}		
+	</ul>
+{% endblock %}
