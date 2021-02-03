@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
+# from django.contrib.auth import authenticate, login
 
 from .models import Post, Comment
 from .forms import RegistrationForm, CommentForm
@@ -27,7 +28,8 @@ class IndexView(generic.ListView):
 
 class DetailView(generic.DetailView):
 	model = Post
-	template_name = "blog_app/detail.html"
+	# автоматом поставит "post_detail.html"
+	# template_name = "blog_app/detail.html"
 
 	def get_queryset(self):
 		return Post.objects.filter(pub_date__lte=timezone.now())
@@ -43,11 +45,19 @@ class RegisterView(generic.edit.FormView):
 	template_name = "registration/register.html"
 
 	def form_valid(self, form):
+		# user = authenticate(self.request, username=self.request.POST['username'], password=self.request.POST['password1'])
+		# login(self.request, self.request.user)
+		
 		form.save()
 		return super(RegisterView, self).form_valid(form)
 
 	def form_invalid(self, form):
 		return super(RegisterView, self).form_invalid(form)
+
+
+class CreatePostView(generic.edit.CreateView):
+	model = Post
+	fields = ['title', 'body']
 
 
 def create_comment(request, post_id):	

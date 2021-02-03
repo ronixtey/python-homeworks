@@ -17,7 +17,7 @@
 		    
 		  {% if user.is_authenticated %}
 	    	<ul class="right hide-on-med-and-down">
-		      <li>Hello {{ user.username }}</li>
+		      <li>{{ user.username }}</li>
 		      <li><a href="{% url 'blog_app:logout' %}">Log out</a></li>
 		    </ul>	
 	    {% else %}

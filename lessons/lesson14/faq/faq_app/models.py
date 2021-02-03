@@ -13,7 +13,7 @@ class UserQuestion(models.Model):
 
 class Answer(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-	#question = models.ForeignKey(UserQuestion, on_delete.CASCADE)
+	question = models.ForeignKey(UserQuestion, on_delete=models.CASCADE)
 	body = models.CharField(max_length=255)
 	pub_date = models.DateTimeField(default=timezone.now())
 	likes = models.IntegerField(default=0)
