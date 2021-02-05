@@ -17,7 +17,7 @@ val = countdown(5);
 
 a = [1, 2, 3];	# простой список
 b = [i + 10 for i in a];	# генератор списка
-b2 = [i for i in range(0, 10)];
+	b2 = [i for i in range(0, 10)];
 
 c = {i:i**2 for i in range(11, 15)}; # генератор словаря
 d = {i for i in range(11, 15)};

@@ -25,7 +25,6 @@ class IndexView(generic.ListView):
 	def get_queryset(self):
 		return Post.objects.filter(pub_date__lte=timezone.now()).order_by("-pub_date")
 
-
 class DetailView(generic.DetailView):
 	model = Post
 	# автоматом поставит "post_detail.html"
@@ -38,6 +37,7 @@ class DetailView(generic.DetailView):
 		context = super().get_context_data(**kwargs)
 		context["form"] = CommentForm()
 		return context
+
 
 class RegisterView(generic.edit.FormView):
 	form_class = RegistrationForm
@@ -57,7 +57,36 @@ class RegisterView(generic.edit.FormView):
 
 class CreatePostView(generic.edit.CreateView):
 	model = Post
+	template_name = "blog_app/new_post.html"
 	fields = ['title', 'body']
+
+	def form_valid(self, form):
+		# добавить проверку на авторизованность
+
+		form.instance.user = self.request.user
+		return super().form_valid(form)
+
+	def get_success_url(self):
+		return reverse("blog_app:index")
+
+
+class UpdatePostView(generic.edit.UpdateView):
+	model = Post
+	template_name = "blog_app/update_post.html"
+	fields = ['title', 'body']
+
+
+	def get_success_url(self):
+		return reverse("blog_app:index")
+
+class DeletePostView(generic.edit.DeleteView):
+	model = Post
+	template_name = "blog_app/delete_post.html"
+
+	def get_success_url(self):
+		return reverse("blog_app:index")
+		
+
 
 
 def create_comment(request, post_id):	
