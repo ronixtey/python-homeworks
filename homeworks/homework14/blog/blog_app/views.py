@@ -61,8 +61,7 @@ class CreatePostView(generic.edit.CreateView):
 	fields = ['title', 'body']
 
 	def form_valid(self, form):
-		# добавить проверку на авторизованность
-
+	
 		form.instance.user = self.request.user
 		return super().form_valid(form)
 

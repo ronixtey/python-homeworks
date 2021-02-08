@@ -1,0 +1,8 @@
+{% extends "fs/base.html" %}
+
+{% block content %}
+	<h1>{{ product }}</h1>
+	<p>{{ product.description }}</p>
+	<p>{{ product.price }}</p>	
+	<p><a href="#" class="">{{ product.subcategory }}</a></p>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "fs/base.html" %}
+
+{% block content %}
+<ul>
+{% for letter in letters %}
+	<li><a href="{% url 'fs:letter_detail' letter.id %}">{{ letter }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

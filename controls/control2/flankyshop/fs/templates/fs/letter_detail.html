@@ -1,0 +1,9 @@
+{% extends "fs/base.html" %}
+
+{% block content %}
+	<h1>{{ product }}</h1>
+	<p>From: {{ letter.sender }}</p>
+	<p>To: {{ letter.receiver }}</p>	
+	<p>Message: {{ letter.body }}</p>
+	<p>Date: {{ letter.date }}</p>	
+{% endblock %}
